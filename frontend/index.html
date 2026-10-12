@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Library</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1> Steam Library</h1>
+        <p>Découvrez les jeux disponibles sur Steam</p>
+    </header>
+
+    <main>
+        <div class="catalog-header">
+            <h2>Catalogue des jeux</h2>
+            <span id="total-games">Chargement...</span>
+        </div>
+
+        <div id="games-container" class="games-grid"></div>
+
+        <p id="message" role="status"></p>
+
+        <nav class="pagination" aria-label="Pagination">
+            <button id="previous">← Précédent</button>
+            <span id="page-info">Page 1</span>
+            <button id="next">Suivant →</button>
+        </nav>
+    </main>
+</body>
+</html>
