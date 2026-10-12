@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException, Query
 from pymongo.errors import PyMongoError
+from app.routers.games_router import router as games_router
 
 from app.database import (
     games_collection,
@@ -11,6 +12,8 @@ app = FastAPI(
     description="API REST pour la gestion des jeux Steam",
     version="1.0.0"
 )
+
+app.include_router(games_router)
 
 
 @app.get("/health")
