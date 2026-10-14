@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from app.services.games_service import delete_game_service
+from app.services.games_service import delete_game_service, update_game_service
 
 def delete_game_handler(game_id: int):
     try:
@@ -10,5 +10,17 @@ def delete_game_handler(game_id: int):
             "title": game["title"]
         }
     
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+def update_game_handler(game_id: int, update_data: dict):
+    try:
+        game = update_game_service(game_id, update_data)
+        return {
+            "message": "Game updated successfully",
+            "id": game["_id"],
+            "title": game["title"]
+        }
+
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
