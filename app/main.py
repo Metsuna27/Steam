@@ -1,4 +1,7 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
+from pymongo.errors import PyMongoError
+from app.routers.games_router import router as games_router
+
 
 from app.database import check_connection
 from app.routers.games_router import router as games_router
@@ -24,7 +27,6 @@ app.mount(
 @app.get("/", include_in_schema=False)
 def homepage():
     return FileResponse(FRONTEND_DIR / "index.html")
-
 
 app.include_router(games_router)
 
