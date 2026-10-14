@@ -1,4 +1,5 @@
 from app.repositories.games_repository import find_games, count_games
+from app.repositories.games_repository import delete_game
 import logging
 
 logger = logging.getLogger(__name__)
