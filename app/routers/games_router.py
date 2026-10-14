@@ -2,9 +2,17 @@ from fastapi import APIRouter, Query
 from app.services.games_service import get_paginated_games
 from app.handlers.game_handler import delete_game_handler, update_game_handler
 
+from fastapi import Depends
+from fastapi.security import HTTPBearer
+
+security = HTTPBearer()
+
+
+
 router = APIRouter(
     prefix="/api/v1/games",
-    tags=["Games"]
+    tags=["Games"],
+    dependencies=[Depends(security)]
 )
 
 
@@ -15,11 +23,11 @@ def list_games(
 ):
     return get_paginated_games(limit, skip)
 
-@router.delete("/api/v1/games/{game_id}")
+@router.delete("/{game_id}")
 def delete_game(game_id: int):
     return delete_game_handler(game_id)
 
-@router.put("/api/v1/games/{game_id}")
+@router.put("/{game_id}")
 def update_game(game_id: int, update_data: dict):
     return update_game_handler(game_id, update_data)
 

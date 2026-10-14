@@ -1,5 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from pymongo.errors import PyMongoError
+from app.routers.users_router import router as users_router
+from app.middlewares.auth_middleware import AuthMiddleware
 from app.routers.games_router import router as games_router
 
 
@@ -28,6 +30,9 @@ app.mount(
 def homepage():
     return FileResponse(FRONTEND_DIR / "index.html")
 
+app.add_middleware(AuthMiddleware)
+
+app.include_router(users_router)
 app.include_router(games_router)
 
 

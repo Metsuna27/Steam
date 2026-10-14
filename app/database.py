@@ -20,6 +20,7 @@ db = client[MONGO_DB]
 
 games_collection = db["Game"]
 
+users_collection = db["users"]
 
 def check_connection():
     try:
